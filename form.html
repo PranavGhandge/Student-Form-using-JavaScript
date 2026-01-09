@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ee15bfd7, #ebc108d7);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            width: 360px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        label {
+            font-size: 15px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            height: 35px;
+            margin-top: 6px;
+            margin-bottom: 18px;
+            padding: 0 10px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #00a9a9;
+            box-shadow: 0 0 5px rgba(0, 169, 169, 0.5);
+        }
+
+        button {
+            width: 100%;
+            height: 38px;
+            border: none;
+            border-radius: 20px;
+            background-color: #36ed39;
+            color: #000;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #2cd32f;
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div class="form-container">
+            <h2>Student Registration</h2>
+            <p class="subtitle">Fill the details below</p>
+
+            <label>Full Name *</label>
+            <input type="text" placeholder="Enter your full name" id="name">
+
+            <label>Phone Number *</label>
+            <input type="text" placeholder="Enter your phone number" id="number" maxlength="10">
+
+            <label>Email ID *</label>
+            <input type="email" placeholder="Enter your email" id="email">
+
+            <label>College Name *</label>
+            <input type="text" placeholder="Enter your college name" id="college">
+            <span id="error"></span>
+            <br><br>
+
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <!-- -------------------------------------------------------------------------------------->
+
+    <script>
+        let form = document.querySelector("form");
+        let name = document.getElementById("name");
+        let number = document.getElementById("number");
+        let email = document.getElementById("email");
+        let college = document.getElementById("college");
+        let btn = document.querySelector("button");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+
+            if (name.value.trim() == "") {
+                alert("Please Enter Your Name");
+                name.style.border = "2px solid red";
+            }
+            else if (number.value.length !== 10) {
+                alert("Please Enter Your Phone Number");
+                number.style.border = "2px solid red";
+            }
+            else if (email.value.trim() == "") {
+                alert("Please Enter Your Email");
+                email.style.border = "2px solid red";
+            }
+            else if (college.value.trim() == "") {
+                alert("Please Enter Your College Name");
+                college.style.border = "2px solid red";
+            }
+            else {
+
+                let studentData = {
+                    name: name.value,
+                    phone: number.value,
+                    email: email.value,
+                    college: college.value
+                };
+
+                sessionStorage.setItem("student", JSON.stringify(studentData));
+
+                document.getElementById("error").innerText = "Your Form successfully submitted";
+                document.getElementById("error").style.color = "green";
+                document.getElementById("error").style.fontSize = "20px";
+                document.getElementById("error").style.fontWeight = "600";
+
+                setTimeout(() => {
+                    window.location.href = "success.html";
+                }, 1200);
+            }
+
+        })
+
+        function remove(a) {
+            a.style.border = "1px solid #ccc";
+        }
+
+        name.addEventListener("focus", () => remove(name));
+        number.addEventListener("focus", () => remove(number));
+        email.addEventListener("focus", () => remove(email));
+        college.addEventListener("focus", () => remove(college));
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
